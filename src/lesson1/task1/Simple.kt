@@ -100,8 +100,7 @@ fun thirdDigit(number: Int): Int {
     val x2 = number / 10 % 10
     val x3 = number / 100 % 10
     val x4 = number / 1000 % 10
-    return x3
-}
+    return x3}
 
 /**
  * Простая
@@ -121,11 +120,8 @@ fun travelMinutes(hoursDepart: Int, minutesDepart: Int, hoursArrive: Int, minute
  * Например, 100 рублей под 10% годовых превратятся в 133.1 рубля
  */
 fun accountInThreeYears(initial: Int, percent: Int): Double {
-    val s = initial
-    val p = percent
-    val x3 = s * (1 + p / 100.0).pow(3)
-    return x3
-}
+    val x3 = initial * (1 + percent / 100.0).pow(3)
+    return x3}
 
 /**
  * Простая
@@ -137,6 +133,4 @@ fun numberRevert(number: Int): Int {
     val x1 = number % 10
     val x2 = number / 10 % 10
     val x3 = number / 100 % 10
-    return x1 * 100 + x2 * 10 + x3
-
-}
+    return x1 * 100 + x2 * 10 + x3}

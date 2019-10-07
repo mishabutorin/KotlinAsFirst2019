@@ -67,11 +67,10 @@ fun minBiRoot(a: Double, b: Double, c: Double): Double {
  * вернуть строку вида: «21 год», «32 года», «12 лет».
  */
 fun ageDescription(age: Int): String = when {
-    age%100 in 5..20 -> "$age лет"
-    age%10 == 1 -> "$age год"
-    age%10 in 2..4 -> "$age года"
+    age % 100 in 5..20 -> "$age лет"
+    age % 10 == 1 -> "$age год"
+    age % 10 in 2..4 -> "$age года"
     else -> "$age лет"
-
 }
 
 /**
@@ -110,18 +109,12 @@ fun whichRookThreatens(
 ): Int {
     val win1 = (kingX == rookX1 || kingY == rookY1)
     val win2 = (kingX == rookX2 || kingY == rookY2)
-
     return when {
-        win1 &&  win2 -> 3
+        win1 && win2 -> 3
         win1 -> 1
         win2 -> 2
         else -> 0
-
-
-
     }
-
-
 }
 
 /**
@@ -141,7 +134,6 @@ fun rookOrBishopThreatens(
 ): Int {
     val win1 = (kingX == rookX || kingY == rookY)
     val win2 = ((abs(kingX - bishopX)) == abs(kingY - bishopY))
-
     return when {
         win1 && win2 -> 3
         win1 -> 1
@@ -158,17 +150,15 @@ fun rookOrBishopThreatens(
  * прямоугольным (вернуть 1) или тупоугольным (вернуть 2).
  * Если такой треугольник не существует, вернуть -1.
  */
-fun triangleKind(a: Double, b: Double, c: Double): Int {
-
-    return when {
-        a > b + c  || b > c + a || c > a + b -> -1
+fun triangleKind(a: Double, b: Double, c: Double): Int =
+    when {
+        a > b + c || b > c + a || c > a + b -> -1
         (a * a + b * b) == c * c || (a * a + c * c) == b * b || (c * c + b * b) == a * a -> 1
-        (a * a + b * b ) < c * c ||  (a * a + c * c) < b * b || (c * c + b * b) < a * a -> 2
+        (a * a + b * b) < c * c || (a * a + c * c) < b * b || (c * c + b * b) < a * a -> 2
         else -> 0
-
-
     }
-}
+
+
 /**
  * Средняя
  *
@@ -177,14 +167,14 @@ fun triangleKind(a: Double, b: Double, c: Double): Int {
  * Найти длину пересечения отрезков AB и CD.
  * Если пересечения нет, вернуть -1.
  */
-fun segmentLength(a: Int, b: Int, c: Int, d: Int): Int {
-    return when {
+fun segmentLength(a: Int, b: Int, c: Int, d: Int): Int =
+    when {
         (a > d || b < c) -> -1
         (a <= d && d <= b && a <= c) -> d - c
         (c <= b && b <= d && a < c) -> b - c
         (c <= a && b <= d) -> b - a
         else -> d - a
     }
-}
+
 
 
