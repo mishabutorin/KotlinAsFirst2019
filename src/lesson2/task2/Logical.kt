@@ -47,8 +47,8 @@ fun daysInMonth(month: Int, year: Int): Int =
     when {
         (month == 1) || (month == 3) || (month == 5) || (month == 7) || (month == 8) || (month == 10) || (month == 12) -> 31
         (month == 4) || (month == 6) || (month == 9) || (month == 11) -> 30
-        ((month == 2) && (year % 400 == 0) || (year % 4 == 0)) -> 29
-        else -> 28
+        ((month == 2) && (year % 4 != 0) || (year % 100 == 0) && (year % 400 != 0)) -> 28
+        else -> 29
     }
 
 
@@ -74,4 +74,13 @@ fun circleInside(
  * кирпич 4 х 4 х 4 пройдёт через отверстие 4 х 4.
  * Вернуть true, если кирпич пройдёт
  */
-fun brickPasses(a: Int, b: Int, c: Int, r: Int, s: Int): Boolean = TODO()
+fun brickPasses(a: Int, b: Int, c: Int, r: Int, s: Int): Boolean {
+    return ((r >= a) && (s >= b))
+            || ((r >= b) && (s >= a))
+            || ((r >= a) && (s >= c))
+            || ((r >= c) && (s >= a))
+            || ((r >= c) && (s >= b))
+            || ((r >= b) && (s >= c))
+
+
+}
