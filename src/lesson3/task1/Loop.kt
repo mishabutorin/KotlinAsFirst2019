@@ -4,8 +4,6 @@ package lesson3.task1
 
 import kotlin.math.sqrt
 import kotlin.math.abs
-import kotlin.math.pow
-import kotlin.math.roundToInt
 
 /**
  * Пример
@@ -15,7 +13,7 @@ import kotlin.math.roundToInt
 fun factorial(n: Int): Double {
     var result = 1.0
     for (i in 1..n) {
-        result = result * i // Please do not fix in master
+        result *= i // Please do not fix in master
     }
     return result
 }
@@ -73,10 +71,10 @@ fun digitCountInNumber(n: Int, m: Int): Int =
 fun digitNumber(n: Int): Int {
     var a = 0
     var k = abs(n)
-    while (k >= 0) {
+    do {
         a += 1
         k /= 10
-    }
+    } while (k > 0)
     return a
 }
 
@@ -86,12 +84,19 @@ fun digitNumber(n: Int): Int {
  * Найти число Фибоначчи из ряда 1, 1, 2, 3, 5, 8, 13, 21, ... с номером n.
  * Ряд Фибоначчи определён следующим образом: fib(1) = 1, fib(2) = 1, fib(n+2) = fib(n) + fib(n+1)
  */
-fun fib(n: Int): Double =
-    ((((1 + sqrt(5.0)) / 2).pow(n) - ((1 + sqrt(5.0)) / 2).pow(n)) / sqrt(5.0)).toDouble()
-
-
-
-
+fun fib(n: Int): Int {
+    var fibonacci1 = 1
+    var fibonacci2 = 1
+    var fibonacci = 0
+    var i = 0
+    while (i < n - 2) {
+        fibonacci = fibonacci1 + fibonacci2
+        fibonacci1 = fibonacci2
+        fibonacci2 = fibonacci
+        i++
+    }
+    return fibonacci2
+}
 
 /**
  * Простая
