@@ -4,6 +4,7 @@ package lesson3.task1
 
 import kotlin.math.sqrt
 import kotlin.math.abs
+import lesson1.task1.sqr
 
 
 /**
@@ -126,13 +127,12 @@ fun lcm(m: Int, n: Int): Int = (m * n) / (nod(m, n))
  * Для заданного числа n > 1 найти минимальный делитель, превышающий 1
  */
 fun minDivisor(n: Int): Int {
-    var n1 = n
-    var x = sqrt(n1.toDouble())
+    val x = sqrt(n.toDouble())
     for (i in 2..x.toInt()) {
         if (n % i == 0)
             return i
     }
-    return n1
+    return n
 }
 
 
@@ -160,7 +160,16 @@ fun isCoPrime(m: Int, n: Int): Boolean = (nod(m, n) == 1)
  * то есть, существует ли такое целое k, что m <= k*k <= n.
  * Например, для интервала 21..28 21 <= 5*5 <= 28, а для интервала 51..61 квадрата не существует.
  */
-fun squareBetweenExists(m: Int, n: Int): Boolean = TODO()
+fun squareBetweenExists(m: Int, n: Int): Boolean {
+    var s = 0
+    val m1 = sqrt(m.toDouble()).toInt()
+    val n1 = sqrt(n.toDouble()).toInt()
+    for (i in m1..n1) {
+        if (sqr(i) in m..n)
+            s++
+    }
+    return (s == 1)
+}
 
 /**
  * Средняя
@@ -178,7 +187,20 @@ fun squareBetweenExists(m: Int, n: Int): Boolean = TODO()
  * Написать функцию, которая находит, сколько шагов требуется для
  * этого для какого-либо начального X > 0.
  */
-fun collatzSteps(x: Int): Int = TODO()
+fun collatzSteps(x: Int): Int {
+    var x1 = x
+    var i = 0
+    while (x1 != 1) {
+        if (x1 % 2 == 0)
+            x1 /= 2
+        else {
+            x1 = 3 * x1 + 1
+        }
+        i++
+    }
+    return i
+}
+
 
 /**
  * Средняя
