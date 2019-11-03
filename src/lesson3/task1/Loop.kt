@@ -161,14 +161,11 @@ fun isCoPrime(m: Int, n: Int): Boolean = (nod(m, n) == 1)
  * Например, для интервала 21..28 21 <= 5*5 <= 28, а для интервала 51..61 квадрата не существует.
  */
 fun squareBetweenExists(m: Int, n: Int): Boolean {
-    var s = 0
-    val m1 = sqrt(m.toDouble()).toInt()
-    val n1 = sqrt(n.toDouble()).toInt()
-    for (i in m1..n1) {
+    for (i in (sqrt(m.toDouble()).toInt())..(sqrt(n.toDouble()).toInt())) {
         if (sqr(i) in m..n)
-            s++
+            return true
     }
-    return (s == 1)
+    return false
 }
 
 /**
@@ -231,7 +228,16 @@ fun cos(x: Double, eps: Double): Double = TODO()
  *
  * Использовать операции со строками в этой задаче запрещается.
  */
-fun revert(n: Int): Int = TODO()
+fun revert(n: Int): Int {
+    var new = 0
+    var last = n
+    for (i in 1..(digitNumber(n))) {
+        new = (new * 10) + (last % 10)
+        last /= 10
+    }
+    return new
+}
+
 
 /**
  * Средняя
@@ -242,7 +248,16 @@ fun revert(n: Int): Int = TODO()
  *
  * Использовать операции со строками в этой задаче запрещается.
  */
-fun isPalindrome(n: Int): Boolean = TODO()
+fun isPalindrome(n: Int): Boolean {
+    var m = n
+    var r = 0
+    var s = digitNumber(n)
+    for (i in 1..s) {
+        r = (10 * r) + (m % 10)
+        m /= 10
+    }
+    return (r == n)
+}
 
 /**
  * Средняя
