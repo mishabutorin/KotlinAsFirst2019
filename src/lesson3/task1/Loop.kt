@@ -251,7 +251,7 @@ fun revert(n: Int): Int {
 fun isPalindrome(n: Int): Boolean {
     var m = n
     var r = 0
-    var s = digitNumber(n)
+    val s = digitNumber(n)
     for (i in 1..s) {
         r = (10 * r) + (m % 10)
         m /= 10
@@ -269,7 +269,7 @@ fun isPalindrome(n: Int): Boolean {
  */
 fun hasDifferentDigits(n: Int): Boolean {
     var n1 = n / 10
-    var a = n % 10
+    val a = n % 10
     while (n1 > 0){
         if ((n1 % 10) != a)
             return true
@@ -289,14 +289,13 @@ fun hasDifferentDigits(n: Int): Boolean {
  * Использовать операции со строками в этой задаче запрещается.
  */
 fun squareSequenceDigit(n: Int): Int {
-    var k = n
     var s = 0
     var i = 0
     var b = 0
     var c = 0
     var a = 0
     var n1 = 0
-    while (s < k) {
+    while (s < n) {
         i += 1
         b = i * i
         c = 1
@@ -309,7 +308,7 @@ fun squareSequenceDigit(n: Int): Int {
     }
     s -= c
     n1 /= 10
-    while (s != k) {
+    while (s != n) {
         a = b / n1 % 10
         n1 /= 10
         s++

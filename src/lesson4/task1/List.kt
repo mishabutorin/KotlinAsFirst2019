@@ -119,26 +119,24 @@ fun buildSumExample(list: List<Int>) = list.joinToString(separator = " + ", post
  * Модуль пустого вектора считать равным 0.0.
  */
 fun abs(v: List<Double>): Double {
-    var s = 0.0
     var m = 0.0
     for (element in v) {
-        s = sqr(element.toInt().toDouble())
-        m += s
+        m += sqr(element.toInt().toDouble())
     }
     return sqrt(m)
 }
+
 
 /**
  * Простая
  *
  * Рассчитать среднее арифметическое элементов списка list. Вернуть 0.0, если список пуст
  */
-fun mean(list: List<Double>): Double {
-    return if (list.sum() == 0.0)
+fun mean(list: List<Double>): Double =
+    if (list.isEmpty())
         0.0
     else
         (list.sum()) / (list.size)
-}
 
 /**
  * Средняя
@@ -149,13 +147,10 @@ fun mean(list: List<Double>): Double {
  * Обратите внимание, что данная функция должна изменять содержание списка list, а не его копии.
  */
 fun center(list: MutableList<Double>): MutableList<Double> {
-    val l = (list.sum()) / (list.size)
-    if (list.isEmpty())
-        return list
-    else if (list.isNotEmpty())
-        for (element in 0 until list.size) {
-            list[element] = list[element] - l
-        }
+    val l = mean(list)
+    for (element in 0 until list.size) {
+        list[element] = list[element] - l
+    }
     return list
 }
 
@@ -192,7 +187,7 @@ fun polynom(p: List<Int>, x: Int): Int {
         return 0
     else
         for (element in p) {
-            r = r + element * i
+            r += element * i
             i *= x
         }
     return r
