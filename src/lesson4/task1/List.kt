@@ -3,8 +3,10 @@
 package lesson4.task1
 
 import lesson1.task1.discriminant
+import lesson1.task1.sqr
 import kotlin.math.pow
 import kotlin.math.sqrt
+import kotlin.collections.indices as indices1
 
 /**
  * Пример
@@ -117,11 +119,13 @@ fun buildSumExample(list: List<Int>) = list.joinToString(separator = " + ", post
  * Модуль пустого вектора считать равным 0.0.
  */
 fun abs(v: List<Double>): Double {
+    var s = 0.0
+    var m = 0.0
     for (element in v) {
-        var el = sqrt(element.pow(2))
-
+        s = sqr(element.toInt().toDouble())
+        m += s
     }
-    return 0.0
+    return sqrt(m)
 }
 
 /**
@@ -162,7 +166,16 @@ fun center(list: MutableList<Double>): MutableList<Double> {
  * представленные в виде списков a и b. Скалярное произведение считать по формуле:
  * C = a1b1 + a2b2 + ... + aNbN. Произведение пустых векторов считать равным 0.
  */
-fun times(a: List<Int>, b: List<Int>): Int = TODO()
+fun times(a: List<Int>, b: List<Int>): Int {
+    var r = 0
+    if (a.isEmpty() || (b.isEmpty()))
+        return 0
+    else
+        for (i in a.indices1) {
+            r += a[i] * b[i]
+        }
+    return r
+}
 
 /**
  * Средняя
@@ -172,7 +185,18 @@ fun times(a: List<Int>, b: List<Int>): Int = TODO()
  * Коэффициенты многочлена заданы списком p: (p0, p1, p2, p3, ..., pN).
  * Значение пустого многочлена равно 0 при любом x.
  */
-fun polynom(p: List<Int>, x: Int): Int = TODO()
+fun polynom(p: List<Int>, x: Int): Int {
+    var r = 0
+    var i = 1
+    if (p.isEmpty())
+        return 0
+    else
+        for (element in p) {
+            r = r + element * i
+            i *= x
+        }
+    return r
+}
 
 /**
  * Средняя
