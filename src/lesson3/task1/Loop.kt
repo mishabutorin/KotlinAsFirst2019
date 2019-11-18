@@ -313,5 +313,18 @@ fun squareSequenceDigit(n: Int): Int {
  *
  * Использовать операции со строками в этой задаче запрещается.
  */
-fun fibSequenceDigit(n: Int): Int = TODO()
-
+fun fibSequenceDigit(n: Int): Int {
+    var a = 0
+    var b = 0
+    var r = 0
+    var fibonacci1 = 0
+    var fibonacci2 = 1
+    while (a < n) {
+        b = fibonacci1
+        fibonacci1 = fibonacci2
+        fibonacci2 = fibonacci1 + b
+        a += digitNumber(fibonacci1)
+    }
+    r = (fibonacci1 / 10.0.pow(a - n) % 10).toInt()
+    return r
+}
