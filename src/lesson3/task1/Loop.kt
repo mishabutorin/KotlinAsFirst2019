@@ -5,6 +5,7 @@ package lesson3.task1
 import kotlin.math.sqrt
 import kotlin.math.abs
 import lesson1.task1.sqr
+import kotlin.math.pow
 
 
 /**
@@ -289,31 +290,18 @@ fun hasDifferentDigits(n: Int): Boolean {
  * Использовать операции со строками в этой задаче запрещается.
  */
 fun squareSequenceDigit(n: Int): Int {
-    var s = 0
-    var i = 0
-    var b = 0
-    var c = 0
     var a = 0
-    var n1 = 0
-    while (s < n) {
-        i += 1
-        b = i * i
-        c = 1
-        n1 = 10
-        while ((b / n1) != 0) {
-            n1 *= 10
-            c += 1
-        }
-        s += c
+    var b = 1
+    var c = 0
+    var r = 0
+    while (a < n) {
+        c = b * b
+        b++
+        a += digitNumber(c)
     }
-    s -= c
-    n1 /= 10
-    while (s != n) {
-        a = b / n1 % 10
-        n1 /= 10
-        s++
-    }
-    return a
+    r = (c / 10.0.pow(a - n) % 10).toInt()
+    return r
+
 }
 
 /**
