@@ -4,6 +4,7 @@ package lesson4.task1
 
 import lesson1.task1.discriminant
 import lesson1.task1.sqr
+import lesson3.task1.digitNumber
 import lesson3.task1.isPrime
 import kotlin.math.pow
 import kotlin.math.sqrt
@@ -326,4 +327,54 @@ fun roman(n: Int): String = TODO()
  * Например, 375 = "триста семьдесят пять",
  * 23964 = "двадцать три тысячи девятьсот шестьдесят четыре"
  */
-fun russian(n: Int): String = TODO()
+var unit = listOf<String>("один", "два", "три", "четыре", "пять", "шесть", "семь", "восемь", "девять")
+var decade = listOf<String>(
+    "десять", "одиннадцать", "двенадцать", "тринадцать", "четырнадцать", "пятнадцать",
+    "шестнадцать", "семнадцать", "восемнадцать", "девятнадцать"
+)
+var decade0 = listOf<String>(
+    "двацать", "тридцать", "сорок", "пятьдесят", "шестьдесят", "семьдесят", "восемьдесят",
+    "девяносто"
+)
+var hundred = listOf<String>(
+    "сто", "двести", "триста", "четыреста", "пятьсот", "шестьсот", "семьсот", "восемьсот", "девятьсот"
+)
+var thousand = listOf<String>(
+    "одна тысяча",
+    "две тысячи",
+    "три тысячи",
+    "четыре тысячи",
+    "пять тысяч",
+    "шесть тысяч",
+    "семь тысяч",
+    "восемь тысяч",
+    "девять тысяч"
+)
+var decadethousand = listOf<String>(
+    "десять тысяч",
+    "одиннадцать тысяч",
+    "двенадцать тысяч",
+    "тринадцать тысяч",
+    "четырнадцать тысяч",
+    "пятнадцать тысяч",
+    "шестнадцать тысяч",
+    "семнадцать тысяч",
+    "восемнадцать тысяч",
+    "девятнадцать тысяч"
+)
+fun russian(n: Int): String {
+    var n1 = n
+    var s = mutableListOf<Int>()
+    var r = mutableListOf<String>()
+    while (n1 != 0) {
+        s.add(n1 % 10)
+        n1 /= 10
+    }
+    for (i in 0 until digitNumber(n)) {
+        when (i == 0) {
+
+            }
+        }
+    }
+}
+
