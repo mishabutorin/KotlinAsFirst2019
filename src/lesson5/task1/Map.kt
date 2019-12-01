@@ -114,10 +114,10 @@ fun buildGrades(grades: Map<String, Int>): Map<Int, List<String>> {
  */
 fun containsIn(a: Map<String, String>, b: Map<String, String>): Boolean {
     for ((key, value) in a) {
-        if (value == b[key])
-            return true
+        if (value != b[key])
+            return false
     }
-    return false
+    return true
 }
 
 /**
@@ -168,7 +168,15 @@ fun whoAreInBoth(a: List<String>, b: List<String>): List<String> = a.intersect(b
  *     mapOf("Emergency" to "911", "Police" to "02")
  *   ) -> mapOf("Emergency" to "112, 911", "Police" to "02")
  */
-fun mergePhoneBooks(mapA: Map<String, String>, mapB: Map<String, String>): Map<String, String> = TODO()
+fun mergePhoneBooks(mapA: Map<String, String>, mapB: Map<String, String>): Map<String, String> {
+    val maps = subtractOf(mapA.toMutableMap(), mapB.toMutableMap())
+    for ((key, value) in mapB) {
+        if (maps[key] == null)
+            maps[key] = value
+        else maps[key] += ", " + mapB[key]
+    }
+    return maps
+}
 
 /**
  * Средняя
@@ -197,7 +205,17 @@ fun averageStockPrice(stockPrices: List<Pair<String, Double>>): Map<String, Doub
  *     "печенье"
  *   ) -> "Мария"
  */
-fun findCheapestStuff(stuff: Map<String, Pair<String, Double>>, kind: String): String? = TODO()
+fun findCheapestStuff(stuff: Map<String, Pair<String, Double>>, kind: String): String? {
+    var designation: String? = null
+    var price = 0.0
+    for ((key) in stuff) {
+        if (((stuff[key]?.first!! == kind) && (price == 0.0)) || (price > stuff[key]?.second!!)) {
+            price = stuff[key]?.second!!
+            designation = key
+        }
+    }
+    return designation
+}
 
 /**
  * Средняя
@@ -208,7 +226,12 @@ fun findCheapestStuff(stuff: Map<String, Pair<String, Double>>, kind: String): S
  * Например:
  *   canBuildFrom(listOf('a', 'b', 'o'), "baobab") -> true
  */
-fun canBuildFrom(chars: List<Char>, word: String): Boolean = TODO()
+fun canBuildFrom(chars: List<Char>, word: String): Boolean {
+    for (element in word)
+        if (element !in chars)
+            return false
+    return true
+}
 
 /**
  * Средняя
@@ -222,7 +245,13 @@ fun canBuildFrom(chars: List<Char>, word: String): Boolean = TODO()
  * Например:
  *   extractRepeats(listOf("a", "b", "a")) -> mapOf("a" to 2)
  */
-fun extractRepeats(list: List<String>): Map<String, Int> = TODO()
+fun extractRepeats(list: List<String>): Map<String, Int> {
+    var res = mutableMapOf<String, Int>()
+    for (element in list) {
+        res[element] = res.getOrDefault(element, 0) + 1
+    }
+    return res.filter { it.value > 1 }
+}
 
 /**
  * Средняя
@@ -278,7 +307,13 @@ fun propagateHandshakes(friends: Map<String, Set<String>>): Map<String, Set<Stri
  *   findSumOfTwo(listOf(1, 2, 3), 4) -> Pair(0, 2)
  *   findSumOfTwo(listOf(1, 2, 3), 6) -> Pair(-1, -1)
  */
-fun findSumOfTwo(list: List<Int>, number: Int): Pair<Int, Int> = TODO()
+fun findSumOfTwo(list: List<Int>, number: Int): Pair<Int, Int> {
+    for (a in list.indices)
+        for (b in list.indices)
+            if ((list[a] + list[b] == number) && (a != b))
+                return Pair(first = a, second = b)
+    return -1 to -1
+}
 
 /**
  * Очень сложная
