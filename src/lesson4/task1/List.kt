@@ -362,19 +362,5 @@ var decadethousand = listOf<String>(
     "восемнадцать тысяч",
     "девятнадцать тысяч"
 )
-fun russian(n: Int): String {
-    var n1 = n
-    var s = mutableListOf<Int>()
-    var r = mutableListOf<String>()
-    while (n1 != 0) {
-        s.add(n1 % 10)
-        n1 /= 10
-    }
-    for (i in 0 until digitNumber(n)) {
-        when (i == 0) {
-
-            }
-        }
-    }
-}
+fun russian(n: Int): String = TODO()
 
