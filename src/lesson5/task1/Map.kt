@@ -207,9 +207,9 @@ fun averageStockPrice(stockPrices: List<Pair<String, Double>>): Map<String, Doub
  */
 fun findCheapestStuff(stuff: Map<String, Pair<String, Double>>, kind: String): String? {
     var designation: String? = null
-    var price = 0.0
+    var price = -1.0
     for ((key) in stuff) {
-        if (((stuff[key]?.first!! == kind) && (price == 0.0)) || (price > stuff[key]?.second!!)) {
+        if (((stuff[key]?.first == kind) && (price == -1.0)) || (price > stuff[key]?.second!!)) {
             price = stuff[key]?.second!!
             designation = key
         }
@@ -227,11 +227,13 @@ fun findCheapestStuff(stuff: Map<String, Pair<String, Double>>, kind: String): S
  *   canBuildFrom(listOf('a', 'b', 'o'), "baobab") -> true
  */
 fun canBuildFrom(chars: List<Char>, word: String): Boolean {
-    for (element in word)
-        if (element !in chars)
+    for (letter in word) {
+        if (letter.toLowerCase() !in chars && letter.toUpperCase() !in chars)
             return false
+    }
     return true
 }
+
 
 /**
  * Средняя
