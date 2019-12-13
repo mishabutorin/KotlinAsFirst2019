@@ -4,7 +4,6 @@ package lesson4.task1
 
 import lesson1.task1.discriminant
 import lesson1.task1.sqr
-import lesson3.task1.digitNumber
 import lesson3.task1.isPrime
 import kotlin.math.pow
 import kotlin.math.sqrt
@@ -166,7 +165,7 @@ fun times(a: List<Int>, b: List<Int>): Int {
     var r = 0
     if (a.isEmpty() || (b.isEmpty()))
         return 0
-    for (i in 0 until a.size) {
+    for (i in a.indices) {
         r += a[i] * b[i]
     }
     return r
@@ -214,23 +213,23 @@ fun accumulate(list: MutableList<Int>): MutableList<Int> {
  * Результат разложения вернуть в виде списка множителей, например 75 -> (3, 5, 5).
  * Множители в списке должны располагаться по возрастанию.
  */
-fun factorize(n: Int): List<Int>  {
-    val r = mutableListOf<Int>()
-    if (isPrime(n)) {
-        r.add(n)
-        return r
-    }
+fun factorize(n: Int): List<Int> {
+    val res = mutableListOf<Int>()
     var n1 = n
     var i = 2
+    if (isPrime(n)) {
+        res.add(n)
+        return res
+    }
     while ((n1 > 1) && (n1 != i - 1)) {
         if (n1 % i == 0) {
-            r.add(i)
+            res.add(i)
             n1 /= i
             i--
         }
         i++
     }
-    return r
+    return res
 }
 
 /**
@@ -251,11 +250,8 @@ fun factorizeToString(n: Int): String = factorize(n).joinToString(separator = "*
  */
 fun convert(n: Int, base: Int): List<Int> {
     val res = mutableListOf<Int>()
-    if (n == 0) {
-        res.add(res.size)
-    }
     var n1 = n
-    while (n1 > 1) {
+    while (n1 >= 1) {
         res.add(n1 % base)
         n1 /= base
     }
