@@ -2,6 +2,8 @@
 
 package lesson5.task1
 
+import javax.imageio.ImageTranscoder
+
 /**
  * Пример
  *
@@ -264,13 +266,40 @@ fun extractRepeats(list: List<String>): Map<String, Int> {
  * Например:
  *   hasAnagrams(listOf("тор", "свет", "рот")) -> true
  */
-fun hasAnagrams(words: List<String>): Boolean {
-    for (i in words.indices)
-        for (j in i + 1 until words.size) {
-            if (words[i].toSet() == words[j].toSet())
-                return true
+fun toMap(word: String): MutableMap<Char, Int?> {
+    var map = mutableMapOf<Char, Int?>()
+    for (symbol in word) {
+        map[symbol] = map[symbol]?.plus(1)
+    }
+    return map
+}
+
+fun hasAnagrams(word1: String, word2: String): Boolean {
+    var letterToCount = mutableMapOf<Char, Int?>()
+    for (letter in word1) {
+        letterToCount[letter] = letterToCount[letter]?.plus(1)
+    }
+    for (letter in word2) {
+        letterToCount[letter] = letterToCount[letter]?.minus(1)
+    }
+    for (letterAndCount in letterToCount) {
+        var count = letterAndCount.value
+        if (count != 0) {
+            return false
         }
-    return false
+    }
+    return true
+}
+
+fun hasAnagrams(words: List<String>): Boolean {
+    var maps = mutableSetOf(mutableMapOf<Char, Int?>())
+    for (word in words) {
+        var map = toMap(word)
+        if (maps.contains(map)) {
+            return true
+        } else maps.add(map)
+    }
+return false
 }
 
 /**
