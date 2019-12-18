@@ -92,7 +92,7 @@ fun buildWordSet(text: List<String>): MutableSet<String> {
  *     -> mapOf(5 to listOf("Семён", "Михаил"), 3 to listOf("Марат"))
  */
 fun buildGrades(grades: Map<String, Int>): Map<Int, List<String>> {
-    var res = mutableMapOf<Int, MutableList<String>>()
+    val res = mutableMapOf<Int, MutableList<String>>()
     for (item in grades.values) {
         res[item] = mutableListOf()
     }
@@ -209,7 +209,7 @@ fun findCheapestStuff(stuff: Map<String, Pair<String, Double>>, kind: String): S
     var designation: String? = null
     var price = -1.0
     for ((key) in stuff) {
-        if (((stuff[key]?.first == kind) && (price == -1.0)) || (price > stuff[key]?.second!!)) {
+        if ((stuff[key]?.first == kind) && ((price == -1.0) || (price > stuff[key]?.second!!))) {
             price = stuff[key]?.second!!
             designation = key
         }
@@ -248,7 +248,7 @@ fun canBuildFrom(chars: List<Char>, word: String): Boolean {
  *   extractRepeats(listOf("a", "b", "a")) -> mapOf("a" to 2)
  */
 fun extractRepeats(list: List<String>): Map<String, Int> {
-    var res = mutableMapOf<String, Int>()
+    val res = mutableMapOf<String, Int>()
     for (element in list) {
         res[element] = res.getOrDefault(element, 0) + 1
     }

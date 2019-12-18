@@ -255,9 +255,6 @@ fun convert(n: Int, base: Int): List<Int> {
         res.add(n1 % base)
         n1 /= base
     }
-    if (n1 in 1..9) {
-        res.add(n1)
-    }
     res.reverse()
     return res
 }
