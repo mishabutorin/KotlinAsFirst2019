@@ -271,7 +271,10 @@ fun convert(n: Int, base: Int): List<Int> {
  * Использовать функции стандартной библиотеки, напрямую и полностью решающие данную задачу
  * (например, n.toString(base) и подобные), запрещается.
  */
-fun convertToString(n: Int, base: Int): String = TODO()
+fun convertToString(n: Int, base: Int): String = convert(n, base).map {
+    if (it <= 9) (it + 48).toChar()
+    else (it + 87).toChar()
+}.joinToString(separator = "")
 
 /**
  * Средняя

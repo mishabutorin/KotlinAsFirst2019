@@ -2,6 +2,9 @@
 
 package lesson6.task1
 
+import lesson2.task2.daysInMonth
+import java.time.Month
+
 /**
  * Пример
  *
@@ -69,7 +72,30 @@ fun main() {
  * Обратите внимание: некорректная с точки зрения календаря дата (например, 30.02.2009) считается неверными
  * входными данными.
  */
-fun dateStrToDigit(str: String): String = TODO()
+fun convnumtomon(month: String): Int? = when (month) {
+
+    else -> null
+}
+
+fun dateStrToDigit(str: String): String {
+    val parts = str.split(" ").toMutableList()
+    val e = NumberFormatException()
+    return try {
+        val day = (parts[0]).toInt()
+        val month = (convnumtomon(parts[1]))!!.toInt()
+        val year = (parts[2]).toInt()
+        if (parts.size > 3) throw e
+        if (daysInMonth(month, year) < day) throw e
+        String.format("%02d.%02d.%d", day, month, year)
+    } catch (e: NumberFormatException) {
+        ""
+    } catch (e: IndexOutOfBoundsException) {
+        ""
+    } catch (e: KotlinNullPointerException) {
+        ""
+    }
+}
+
 
 /**
  * Средняя
@@ -81,6 +107,21 @@ fun dateStrToDigit(str: String): String = TODO()
  * Обратите внимание: некорректная с точки зрения календаря дата (например, 30 февраля 2009) считается неверными
  * входными данными.
  */
+fun convmontonum(month: String): String = when (month) {
+    "01" -> "января"
+    "02" -> "февраля"
+    "03" -> "марта"
+    "04" -> "апреля"
+    "05" -> "мая"
+    "06" -> "июня"
+    "07" -> "июля"
+    "08" -> "августа"
+    "09" -> "сентября"
+    "10" -> "октября"
+    "11" -> "ноября"
+    "12" -> "декабря"
+    else -> ""
+}
 fun dateDigitToStr(digital: String): String = TODO()
 
 /**
