@@ -213,10 +213,12 @@ fun accumulate(list: MutableList<Int>): MutableList<Int> {
  * Результат разложения вернуть в виде списка множителей, например 75 -> (3, 5, 5).
  * Множители в списке должны располагаться по возрастанию.
  */
-fun factorize(n: Int): List<Int> {
-    val res = mutableListOf<Int>()
+fun factorize(n: Int): List<Int> = TODO()
+
+
+/*    val res = mutableListOf<Int>()
     var n1 = n
-    var i = 2
+    val i = 2
     if (isPrime(n)) {
         res.add(n)
         return res
@@ -230,7 +232,7 @@ fun factorize(n: Int): List<Int> {
         i++
     }
     return res
-}
+}*/
 
 /**
  * Сложная
@@ -250,11 +252,16 @@ fun factorizeToString(n: Int): String = factorize(n).joinToString(separator = "*
  */
 fun convert(n: Int, base: Int): List<Int> {
     val res = mutableListOf<Int>()
-    var n1 = n
-    while (n1 >= 1) {
-        res.add(n1 % base)
-        n1 /= base
+    var current = n
+    if (n == 0) {
+        res.add(0)
+        return res
     }
+    while (current >= 1) {
+        res.add(current % base)
+        current /= base
+    }
+
     res.reverse()
     return res
 }
