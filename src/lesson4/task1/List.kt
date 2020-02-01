@@ -213,26 +213,20 @@ fun accumulate(list: MutableList<Int>): MutableList<Int> {
  * Результат разложения вернуть в виде списка множителей, например 75 -> (3, 5, 5).
  * Множители в списке должны располагаться по возрастанию.
  */
-fun factorize(n: Int): List<Int> = TODO()
-
-
-/*    val res = mutableListOf<Int>()
-    var n1 = n
-    val i = 2
-    if (isPrime(n)) {
-        res.add(n)
-        return res
-    }
-    while ((n1 > 1) && (n1 != i - 1)) {
-        if (n1 % i == 0) {
-            res.add(i)
-            n1 /= i
-            i--
+fun factorize(n: Int): List<Int> {
+    val result = mutableListOf<Int>()
+    var dividend = n //делимое
+    var divider = 2 //делитель
+    while ((dividend > 1) && (dividend != divider - 1)) {
+        if ((dividend % divider) == 0) {
+            result.add(divider)
+            dividend /= divider
+            divider--
         }
-        i++
+        divider++
     }
-    return res
-}*/
+return result
+}
 
 /**
  * Сложная
@@ -362,5 +356,6 @@ var decadethousand = listOf<String>(
     "восемнадцать тысяч",
     "девятнадцать тысяч"
 )
+
 fun russian(n: Int): String = TODO()
 
