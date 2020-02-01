@@ -274,23 +274,6 @@ fun toMap(word: String): MutableMap<Char, Int?> {
     return map
 }
 
-fun hasAnagrams(word1: String, word2: String): Boolean {
-    var letterToCount = mutableMapOf<Char, Int?>()
-    for (letter in word1) {
-        letterToCount[letter] = letterToCount[letter]?.plus(1)
-    }
-    for (letter in word2) {
-        letterToCount[letter] = letterToCount[letter]?.minus(1)
-    }
-    for (letterAndCount in letterToCount) {
-        var count = letterAndCount.value
-        if (count != 0) {
-            return false
-        }
-    }
-    return true
-}
-
 fun hasAnagrams(words: List<String>): Boolean {
     var maps = mutableSetOf(mutableMapOf<Char, Int?>())
     for (word in words) {
@@ -299,7 +282,7 @@ fun hasAnagrams(words: List<String>): Boolean {
             return true
         } else maps.add(map)
     }
-return false
+    return false
 }
 
 /**
@@ -346,11 +329,16 @@ fun propagateHandshakes(friends: Map<String, Set<String>>): Map<String, Set<Stri
  *   findSumOfTwo(listOf(1, 2, 3), 6) -> Pair(-1, -1)
  */
 fun findSumOfTwo(list: List<Int>, number: Int): Pair<Int, Int> {
-    for (a in list.indices)
-        for (b in list.indices)
-            if ((list[a] + list[b] == number) && (a != b))
-                return Pair(first = a, second = b)
-    return -1 to -1
+    var met = mutableSetOf<Int>()
+    for (current in list) {
+        val required = number - current
+        if (required in met) {
+            return list.indexOf(required) to list.indexOf(current)
+        } else {
+            met.add(current)
+        }
+    }
+return -1 to -1
 }
 
 /**
