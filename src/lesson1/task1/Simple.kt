@@ -59,7 +59,8 @@ fun main() {
  * Пользователь задает время в часах, минутах и секундах, например, 8:20:35.
  * Рассчитать время в секундах, прошедшее с начала суток (30035 в данном случае).
  */
-fun seconds(hours: Int, minutes: Int, seconds: Int): Int = hours * 3600 + minutes * 60 + seconds
+fun seconds(hours: Int, minutes: Int, seconds: Int): Int =
+    hours * 3600 + minutes * 60 + seconds
 
 /**
  * Тривиальная
@@ -78,7 +79,7 @@ fun lengthInMeters(sagenes: Int, arshins: Int, vershoks: Int): Double =
  * Вывести значение того же угла в радианах (например, 0.63256).
  */
 fun angleInRadian(deg: Int, min: Int, sec: Int): Double =
-    (deg * (PI / 180)) + (min * (PI / (180 * 60))) + sec * ((PI / (180 * 60 * 60)))
+    ((deg + min / 60.0 + sec / 3600.0) * PI) / 180
 
 /**
  * Тривиальная
@@ -87,7 +88,7 @@ fun angleInRadian(deg: Int, min: Int, sec: Int): Double =
  * Например, расстояние между (3, 0) и (0, 4) равно 5
  */
 fun trackLength(x1: Double, y1: Double, x2: Double, y2: Double): Double =
-    sqrt(((x2 - x1) * (x2 - x1)) + ((y2 - y1) * (y2 - y1)))
+    sqrt((x2 - x1).pow(2) + (y2 - y1).pow(2))
 
 /**
  * Простая
@@ -95,13 +96,8 @@ fun trackLength(x1: Double, y1: Double, x2: Double, y2: Double): Double =
  * Пользователь задает целое число, большее 100 (например, 3801).
  * Определить третью цифру справа в этом числе (в данном случае 8).
  */
-fun thirdDigit(number: Int): Int {
-    val x1 = number % 10
-    val x2 = number / 10 % 10
-    val x3 = number / 100 % 10
-    val x4 = number / 1000 % 10
-    return x3
-}
+fun thirdDigit(number: Int): Int =
+    number / 100 % 10
 
 /**
  * Простая
@@ -111,7 +107,7 @@ fun thirdDigit(number: Int): Int {
  * Определите время поезда в пути в минутах (в данном случае 216).
  */
 fun travelMinutes(hoursDepart: Int, minutesDepart: Int, hoursArrive: Int, minutesArrive: Int): Int =
-    hoursArrive * 60 + minutesArrive - hoursDepart * 60 - minutesDepart
+    (hoursArrive * 60 + minutesArrive) - (hoursDepart * 60 + minutesDepart)
 
 /**
  * Простая
@@ -121,7 +117,7 @@ fun travelMinutes(hoursDepart: Int, minutesDepart: Int, hoursArrive: Int, minute
  * Например, 100 рублей под 10% годовых превратятся в 133.1 рубля
  */
 fun accountInThreeYears(initial: Int, percent: Int): Double =
-    initial * (1 + percent / 100.0).pow(3)
+    initial * ((1 + percent / 100.0).pow(3))
 
 
 /**
@@ -131,8 +127,8 @@ fun accountInThreeYears(initial: Int, percent: Int): Double =
  * Необходимо вывести число, полученное из заданного перестановкой цифр в обратном порядке (например, 874).
  */
 fun numberRevert(number: Int): Int {
-    val x1 = number % 10
-    val x2 = number / 10 % 10
-    val x3 = number / 100 % 10
-    return x1 * 100 + x2 * 10 + x3
+    val third = number % 10
+    val second = number / 10 % 10
+    val first = number / 100 % 10
+    return third * 100 + second * 10 + first
 }
