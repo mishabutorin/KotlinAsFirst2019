@@ -40,10 +40,10 @@ class PhoneBook {
      * (во втором случае телефонная книга не должна меняться).
      */
     fun removeHuman(name: String): Boolean {
-        if (!humans.contains(name)) {
-            return false
-        } else humans.remove(name)
-        return true
+        return if (!humans.contains(name)) {
+            humans.remove(name)
+            false
+        } else true
     }
 
     /**
@@ -64,6 +64,7 @@ class PhoneBook {
         } else humans[name]?.add(phone)
         return true
     }
+
 
     /**
      * Убрать номер телефона.
@@ -109,13 +110,13 @@ class PhoneBook {
     override fun equals(other: Any?): Boolean {
         if (other is PhoneBook) {
             for ((key, value) in other.humans) {
-                if (humans[key] == other.humans[key]) {
+                if (humans == other.humans) {
                     return true
                 }
             }
         }
         return false
-}
+    }
 
     override fun hashCode(): Int = humans.hashCode()
 }

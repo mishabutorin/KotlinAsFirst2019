@@ -26,6 +26,7 @@ class Complex(val re: Double, val im: Double) {
         s.replace("-", "+-").substringAfter('+').substringBefore('i').toDouble()
     )
 
+
     /**
      * Сложение.
      */
@@ -44,9 +45,7 @@ class Complex(val re: Double, val im: Double) {
     /**
      * Умножение
      */
-    operator fun times(other: Complex): Complex {
-        return Complex(re * other.re - im * other.im, re * other.im + other.re * im)
-    }
+    operator fun times(other: Complex): Complex = Complex(re * other.re - im * other.im, re * other.im + other.re * im)
 
     /**
      * Деление
@@ -78,4 +77,11 @@ class Complex(val re: Double, val im: Double) {
             "$re+$im" + "i"
         }
     }
+
+    override fun hashCode(): Int {
+        var result = re.hashCode()
+        result = 31 * result + im.hashCode()
+        return result
+    }
 }
+
